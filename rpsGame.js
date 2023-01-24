@@ -36,7 +36,7 @@ function game() {
   for (i=1; i < 6; i++) {
     let computerSelection = getComputerChoice();
     let playerSelection = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
-    console.log(playRound(playerSelection, computerSelection));
+    console.log(`Round ${i} Results: `, playRound(playerSelection, computerSelection));
   }
 }
 let playerScore = 0;

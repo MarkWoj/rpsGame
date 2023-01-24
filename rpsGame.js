@@ -1,19 +1,23 @@
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return `It's a tie! You both chose ${computerSelection}.`;
+    return `It's a tie! You both chose ${computerSelection}. You: ${playerScore} Computer: ${computerScore}`;
   }
   else if (playerSelection === "rock" && computerSelection === "scissors") {
-    return `You win! ${playerSelection} beats ${computerSelection}.`;
+    playerScore++;
+    return `You win! ${playerSelection} beats ${computerSelection}. You: ${playerScore} Computer: ${computerScore}`;
   }
   else if (playerSelection === "paper" && computerSelection === "rock") {
-    return `You win! ${playerSelection} beats ${computerSelection}.`;
+    playerScore++;
+    return `You win! ${playerSelection} beats ${computerSelection}. You: ${playerScore} Computer: ${computerScore}`;
   }
   else if (playerSelection === "scissors"
   && computerSelection === "paper") {
-    return `You win! ${playerSelection} beats ${computerSelection}.`;
+    playerScore++;
+    return `You win! ${playerSelection} beats ${computerSelection}. You: ${playerScore} Computer: ${computerScore}`;
   }
   else {
-    return `You lose! ${computerSelection} beats ${playerSelection}.`;
+    computerScore++;
+    return `You lose! ${computerSelection} beats ${playerSelection}. You: ${playerScore} Computer: ${computerScore}`;
   }
 }
 function getComputerChoice() {
@@ -28,7 +32,13 @@ function getComputerChoice() {
     return "scissors";
   }
 }
-const playerSelection = "Rock".toLowerCase();
-const computerSelection = getComputerChoice();
-console.log(`Your choice: ${playerSelection} Computer's Choice: ${computerSelection}`);
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+  for (i=1; i < 6; i++) {
+    let computerSelection = getComputerChoice();
+    let playerSelection = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
+    console.log(playRound(playerSelection, computerSelection));
+  }
+}
+let playerScore = 0;
+let computerScore = 0;
+game();

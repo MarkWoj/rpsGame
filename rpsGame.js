@@ -32,13 +32,30 @@ function getComputerChoice() {
     return "scissors";
   }
 }
-function game() {
-  for (i=1; i < 6; i++) {
+function game(playerSelection) {
     let computerSelection = getComputerChoice();
-    let playerSelection = prompt("Please enter rock, paper, or scissors: ").toLowerCase();
-    console.log(`Round ${i} Results: `, playRound(playerSelection, computerSelection));
-  }
+    content.textContent = (`Round Results: `, playRound(playerSelection, computerSelection));
+    results.appendChild(content);
+    if(playerScore === 5) {
+      gameOver.textContent = ('Game Over, You Are The Champion!');
+      results.appendChild(gameOver);
+    }
+    else if (computerScore === 5) {
+      gameOver.textContent = ('Game Over, The Computer Is The Champion!');
+      results.appendChild(gameOver);
+    }
 }
+
 let playerScore = 0;
 let computerScore = 0;
-game();
+
+const buttons = document.querySelectorAll('button')
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    game(button.id);
+  });
+});
+// const container = document.querySelector('#container');
+
+const content = document.createElement('div');
+const gameOver = document.createElement('div');
